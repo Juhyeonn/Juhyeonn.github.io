@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포트폴리오 · 김다은</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #111;
+    --gray: #888;
+    --light: #f5f5f3;
+    --border: #e0e0dc;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    background: #fafaf8;
+    color: var(--black);
+    line-height: 1.7;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; letter-spacing: 0.02em; }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a { text-decoration: none; color: var(--gray); font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.2s; }
+  nav ul a:hover { color: var(--black); }
+
+  section { padding: 5rem 3rem; max-width: 860px; margin: 0 auto; }
+
+  .hero { padding-top: 6rem; padding-bottom: 5rem; }
+  .hero-label { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--gray); text-transform: uppercase; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.6rem, 6vw, 4rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero p { font-size: 1rem; color: var(--gray); max-width: 480px; margin-bottom: 2rem; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; border-bottom: 1px solid var(--black); padding-bottom: 2px; color: var(--black); text-decoration: none; transition: gap 0.2s; }
+  .hero-cta:hover { gap: 0.9rem; }
+
+  .section-title { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; }
+  .about-name { font-family: 'DM Serif Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 0.3rem; }
+  .about-role { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { font-size: 0.75rem; border: 1px solid var(--border); padding: 0.3rem 0.75rem; border-radius: 999px; color: var(--gray); }
+  .about-text { font-size: 0.95rem; color: #444; }
+
+  .project-list { display: flex; flex-direction: column; }
+  .project-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 1.5rem; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); transition: all 0.15s; border-radius: 0; }
+  .project-item:hover { background: var(--light); padding-left: 1rem; padding-right: 1rem; margin: 0 -1rem; border-radius: 8px; border-color: transparent; }
+  .project-num { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--border); }
+  .project-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .project-desc { font-size: 0.82rem; color: var(--gray); }
+  .project-arrow { font-size: 1rem; color: var(--gray); transition: transform 0.2s; }
+  .project-item:hover .project-arrow { transform: translateX(4px); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+  .skill-card { padding: 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+  .skill-category { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.8rem; }
+  .skill-items { display: flex; flex-direction: column; gap: 0.4rem; }
+  .skill-item { font-size: 0.88rem; }
+
+  .contact-box { border: 1px solid var(--border); border-radius: 16px; padding: 3rem; text-align: center; background: #fff; }
+  .contact-box h3 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 0.8rem; }
+  .contact-box p { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link { font-size: 0.85rem; border-bottom: 1px solid var(--black); padding-bottom: 2px; text-decoration: none; color: var(--black); }
+
+  footer { text-align: center; padding: 2rem; font-size: 0.78rem; color: #ccc; border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 1rem; }
+    section { padding: 3rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hero { padding-top: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">KD</div>
+  <ul>
+    <li><a href="#about">소개</a></li>
+    <li><a href="#projects">프로젝트</a></li>
+    <li><a href="#skills">스킬</a></li>
+    <li><a href="#contact">연락</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-label">Portfolio · 2025</div>
+  <h1>안녕하세요,<br>김다은입니다.</h1>
+  <p>다양한 경험을 통해 성장하는 학생입니다. 새로운 기술을 배우고 문제를 해결하는 것을 좋아합니다.</p>
+  <a href="#projects" class="hero-cta">프로젝트 보기 →</a>
+</section>
+
+<section id="about">
+  <div class="section-title">About</div>
+  <div class="about-grid">
+    <div>
+      <div class="about-name">김다은</div>
+      <div class="about-role">○○대학교 · 컴퓨터공학과 3학년</div>
+      <div class="tag-list">
+        <span class="tag">Python</span>
+        <span class="tag">React</span>
+        <span class="tag">Java</span>
+        <span class="tag">SQL</span>
+        <span class="tag">팀플 환영</span>
+      </div>
+    </div>
+    <div class="about-text">
+      문제를 논리적으로 분석하고 효율적인 해결책을 찾는 것에 흥미를 느낍니다. 팀 프로젝트에서 기획부터 구현까지 적극적으로 참여하며, 사용자 경험을 중심에 두는 개발을 지향합니다.
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-title">Projects</div>
+  <div class="project-list">
+    <div class="project-item">
+      <div class="project-num">01</div>
+      <div>
+        <div class="project-title">캠퍼스 일정 공유 앱</div>
+        <div class="project-desc">React · Firebase · 팀 프로젝트 (3인)</div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-item">
+      <div class="project-num">02</div>
+      <div>
+        <div class="project-title">도서관 좌석 예약 시스템</div>
+        <div class="project-desc">Java · MySQL · 개인 프로젝트</div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-item">
+      <div class="project-num">03</div>
+      <div>
+        <div class="project-title">날씨 기반 추천 알고리즘</div>
+        <div class="project-desc">Python · OpenAPI · 데이터 분석</div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-title">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-category">언어</div>
+      <div class="skill-items">
+        <span class="skill-item">Python</span>
+        <span class="skill-item">Java</span>
+        <span class="skill-item">JavaScript</span>
+        <span class="skill-item">C</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">프레임워크</div>
+      <div class="skill-items">
+        <span class="skill-item">React</span>
+        <span class="skill-item">Spring Boot</span>
+        <span class="skill-item">Node.js</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">도구</div>
+      <div class="skill-items">
+        <span class="skill-item">Git / GitHub</span>
+        <span class="skill-item">MySQL</span>
+        <span class="skill-item">Figma</span>
+        <span class="skill-item">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">기타</div>
+      <div class="skill-items">
+        <span class="skill-item">팀 협업</span>
+        <span class="skill-item">문서 작성</span>
+        <span class="skill-item">발표 / 기획</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <h3>함께 만들어요.</h3>
+    <p>궁금한 점이 있거나 같이 프로젝트 해보고 싶다면 편하게 연락주세요.</p>
+    <div class="contact-links">
+      <a href="mailto:sample@email.com" class="contact-link">이메일</a>
+      <a href="#" class="contact-link">GitHub</a>
+      <a href="#" class="contact-link">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 김다은 · 모든 권리 보유</footer>
+
+</body>
+</html>
